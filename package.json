@@ -10,6 +10,9 @@
     "sucrase": "^3.12.1"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "husky": "^4.0.9",
+    "lint-staged": "^9.5.0",
     "nodemon": "^2.0.2"
   },
   "scripts": {
@@ -19,5 +22,16 @@
   "_moduleAliases": {
     "@root": ".",
     "@Server": "src/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
