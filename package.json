@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "nodemon ./src/index.js",
-    "debug": "nodemon --inspect ./src/index.js"
+    "debug": "node --inspect-brk -r sucrase/register ./src/index.js"
   },
   "_moduleAliases": {
     "@root": ".",
