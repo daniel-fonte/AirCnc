@@ -3,12 +3,13 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import routes from "@Routes";
+import {resolve} from "path";
 
 const app = express();
 
 dotenv.config({path: "./src/Config/.env"});
 
-mongoose.connect(`mongodb+srv://oministack:${process.env.DB_PASSWORD}@oministack-t883u.mongodb.net/test?retryWrites=true&w=majority`, {
+mongoose.connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -16,6 +17,7 @@ mongoose.connect(`mongodb+srv://oministack:${process.env.DB_PASSWORD}@oministack
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+app.use("/file",  express.static(resolve(__dirname, "..", "Uploads", "Spots")));
 app.use(routes);
 
 app.listen(3000);

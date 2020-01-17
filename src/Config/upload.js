@@ -1,5 +1,6 @@
 import multer from "multer";
 import {resolve, extname} from "path";
+import {randomBytes} from "crypto";
 
 export default {
     dest: resolve(__dirname, "..", "..", "Uploads", "Spots"),
@@ -7,9 +8,9 @@ export default {
         destination: resolve(__dirname, "..", "..", "Uploads", "Spots"),
         filename: (req, file, cb) => {
             const ext = extname(file.originalname);
-            const date = Date.now();
+            const hash = randomBytes(10).toString("hex");
     
-            cb(null, `IMG-${date}${ext}`);
+            cb(null, `IMG-${hash}${ext}`);
         }
     }),
     fileFilter(req, file, cb) {

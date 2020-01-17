@@ -10,14 +10,21 @@ const upload = multer(storage);
 
 const routes = express.Router();
 
-//User
-routes.post("/Register", SessionUser.store);
+//Spot Dashboards
+routes.post("/Dashboard/Register", SessionUser.store);
 
-routes.post("/Login", SessionUser.show);
+routes.post("/Dashboard/Login", SessionUser.show);
 
-//Spot
-routes.post("/Spot/Register", TokenVerify);
+routes.post("/Spot/Dashboard", TokenVerify);
+routes.post("/Spot/Dashboard", upload.single("thumbnail"), SpotController.store);
 
-routes.post("/Spot/Register", upload.single("thumbnail"), SpotController.store);
+routes.get("/Spot/Dashboard", TokenVerify);
+routes.get("/Spot/Dashboard", SpotController.index);
+
+routes.delete("/Spot/Dashboard/:idSpot", TokenVerify);
+routes.delete("/Spot/Dashboard/:idSpot", SpotController.destroy);
+
+routes.put("/Spot/Dashboard/:idSpot", TokenVerify);
+routes.put("/Spot/Dashboard/:idSpot", SpotController.update);
 
 export default routes;
