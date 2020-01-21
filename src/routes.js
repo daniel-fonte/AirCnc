@@ -1,15 +1,22 @@
 import "module-alias/register";
+import express from "express";
+import multer from "multer";
+
 import storage from "@Config/upload";
+import BookingController from "@Controller/BookingController";
 import DashboardController from "@Controller/DashboardController";
 import SessionUser from "@Controller/SessionController";
 import SpotController from "@Controller/SpotController";
 import TokenVerify from "@Middleware/token";
-import express from "express";
-import multer from "multer";
+
 
 const upload = multer(storage);
 
 const routes = express.Router();
+
+//Booking
+routes.post("/Booking/:idSpot", TokenVerify);
+routes.post("/Booking/:idSpot", BookingController.store);
 
 //Public
 routes.get("/Spots", SpotController.index);

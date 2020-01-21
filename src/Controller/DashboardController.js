@@ -64,12 +64,14 @@ export default {
             const {price, techs, company} = req.body;
             const {idSpot} = req.params;
 
-            const SpotAltered = await SpotModel.updateOne({
+            const SpotAltered = await SpotModel.findOneAndUpdate({
                 _id: idSpot
             }, {
                 price: parseFloat(price).toFixed(2),
-                techs: techs.split(",").map(techs => techs.trim()), 
+                techs: techs.split(",").map(techs => techs.trim().toUpperCase()), 
                 company
+            }, {
+                new: true
             });
 
             return res.status(200).json({message: "Update Sucessfull", Spot: SpotAltered});
