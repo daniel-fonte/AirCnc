@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
  
 const UserSchema = new mongoose.Schema({
     Email: {
@@ -18,22 +18,33 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.pre("save", function(next) {
-    const cryptPassword = async () => {
-        try {
-            const crypt = await bcrypt.hash(this.Password, 10);
+UserSchema.pre("save", async function(next) {
+    try {
+        const schema = this;
 
-            return crypt;
-        }
-        catch(error) {
-            return error;
-        }
-    };
-    cryptPassword().then(crypt => {
-        this.Password = crypt;
+        const hashPassoword = await bcrypt.hash(schema.Password, 10);
+
+        schema.Password = hashPassoword;
 
         next();
-    });
+    } catch (error) {
+        return error;
+    }
+});
+
+UserSchema.pre("findOneAndUpdate", async function(next) {
+    try {
+        const schema = this;
+        const update = schema.getUpdate();
+
+        const hasPassword = await bcrypt.hash(update.Password, 10);
+
+        update.Password = hasPassword;
+
+        next();
+    } catch (error) {
+        return error;
+    }
 });
 
 export default mongoose.model("User", UserSchema);

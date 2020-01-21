@@ -2,88 +2,31 @@ import "module-alias/register";
 import SpotModel from "@Model/Spot";
 
 export default {
-    async store(req, res) {
-        try {
-            if(!req.body.price) {
-                return res.status(400).json({error: "Price not insert"});
-            }
-            if(!req.body.company) {
-                return res.status(400).json({error: "Company not insert"});
-            }
-            
-            if(!req.body.techs) {
-                return res.status(400).json({error: "Techs not insert"});
-            }
-            
-            const {idToken} = req;
-            const {price, techs, company} = req.body;
-            const {filename} = req.file;
-
-            parseFloat(price).toFixed(2);
-            techs.split(",").map(techs => techs.trim());
-
-            const spotCreated = await SpotModel.create({
-                user : idToken,
-                price,
-                techs,
-                company, 
-                thumbnail: filename,
-                url: ""
-            });
-
-            return res.status(200).json({message: "Spot registered", spotCreated});
-        } catch (error) {
-            return res.status(400).json({error});
-        }
-    },
     async index(req, res) {
         try {
-            const {idToken} = req;
-            
-            const spotDb = await SpotModel.find({
-                user: idToken
-            });
+            const spotsDb = await SpotModel.find({}).populate("user");
 
-            if (spotDb == "") {
-                return res.status(400).json({message: "Spots empty"});
-            }
-            
-            return res.status(200).json({spots: spotDb});
+            return res.status(200).json({Spots: spotsDb});
         }
         catch(error) {
             return res.status(400).json({error});
         }
     },
-    async destroy(req, res) {
+    async show(req, res) {
         try {
-            const {idSpot} = req.params;
+            const {techs} = req.query;
 
-            const spotDeleted = await SpotModel.deleteOne({
-                _id: idSpot
-            });
+            const spotDb = await SpotModel.find({
+                techs: {
+                    $in: techs.split(",").map(techs => techs.trim().toUpperCase())
+                }
+            }).populate("user");
+
+            if (spotDb == "") {
+                return res.status(400).json({message: "Cannot find Spots"});
+            }
             
-            return res.status(200).json({message: "Spot deleted", spotDeleted});
-        } catch (error) {
-            return res.status(400).json({error});
-        }
-    },
-    async update(req, res) {
-        try {
-            const {price, techs, company} = req.body;
-            const {idSpot} = req.params;
-
-            techs.split(",").map(techs => techs.trim());
-            parseFloat(price).toFixed(2);
-
-            const SpotAltered = await SpotModel.findByIdAndUpdate({
-                _id: idSpot
-            }, {
-                price,
-                techs, 
-                company
-            });
-
-            return res.status(200).json({message: "Update Sucessfull", SpotAltered});
+            return res.json({Spots: spotDb});
         } catch (error) {
             return res.status(400).json({error});
         }

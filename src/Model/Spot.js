@@ -1,10 +1,13 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config({path: "./src/Config/.env"});
 
 const SpotSchema = new mongoose.Schema({
-    thumbnail: String,
+    thumbnail: {
+        type: String,
+        required: true
+    },
     price: Number,
     techs: [String],
     company: String, 
