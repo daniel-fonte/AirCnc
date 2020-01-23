@@ -9,7 +9,6 @@ import SessionUser from "@Controller/SessionController";
 import SpotController from "@Controller/SpotController";
 import TokenVerify from "@Middleware/token";
 
-
 const upload = multer(storage);
 
 const routes = express.Router();
