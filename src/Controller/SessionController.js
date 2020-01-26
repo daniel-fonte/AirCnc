@@ -1,9 +1,10 @@
 import "module-alias/register";
-import SpotModel from "@Model/Spot";
-import UserModel from "@Model/User";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+
+import SpotModel from "@Model/Spot";
+import UserModel from "@Model/User";
 
 dotenv.config({path: "./src/Config/.env"});
 
@@ -117,13 +118,17 @@ export default {
 	async update(req, res) {
 		try {
 			const {idToken} = req;
-			const {Password, Email} = req.body;
+			const {Password, newPassword, Email} = req.body;
 
 			const userDb = await UserModel.findById({
 				_id: idToken
 			}).select("+Password");
 
-			if (await bcrypt.compare(Password, userDb.Password)) {
+			if (!await bcrypt.compare(Password, userDb.Password)) {
+				return res.status(400).json({message: "Incorrect Password"});
+			}
+
+			if (await bcrypt.compare(newPassword, userDb.Password)) {
 				return res.status(400).json({message: "Equal passowords"});
 			}
 			else if (userDb.Email == Email) {
@@ -133,15 +138,11 @@ export default {
 			const userAltered = await UserModel.findOneAndUpdate({
 				_id: idToken
 			}, {
-				Password,
+				Password: newPassword,
 				Email
 			}, {
 				new: true
 			}).select("+Password");
-
-			const token = await generateToken({id: userAltered.id});
-
-			res.setHeader("Authorization", `Bearer ${token}`);
 
 			return res.status(200).json({message: "Update successfull", UserUpdated: userAltered});
 		} catch (error) {
