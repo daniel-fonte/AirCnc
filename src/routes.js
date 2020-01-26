@@ -40,6 +40,9 @@ routes.post("/Spot/Dashboard", upload.single("thumbnail"), DashboardController.s
 routes.get("/Spot/Dashboard", TokenVerify);
 routes.get("/Spot/Dashboard", DashboardController.index);
 
+routes.get("/Spot/Dashboard/:idSpot", TokenVerify);
+routes.get("/Spot/Dashboard/:idSpot", DashboardController.show);
+
 routes.delete("/Spot/Dashboard/:idSpot", TokenVerify);
 routes.delete("/Spot/Dashboard/:idSpot", DashboardController.destroy);
 

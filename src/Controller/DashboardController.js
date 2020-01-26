@@ -2,6 +2,19 @@ import "module-alias/register";
 import SpotModel from "@Model/Spot";
 
 export default {
+    async show(req, res) {
+        try {
+            const {idSpot} = req.params;
+
+            const spotDb = await SpotModel.findById({
+                _id: idSpot
+            });
+
+            return res.status(200).json({Spot: spotDb});
+        } catch (error) {
+            return res.status(400).json({error});
+        }
+    },
     async index(req, res) {
         try {
             const {idToken} = req;

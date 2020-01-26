@@ -1,5 +1,3 @@
 export default {
-    exposeHeaders: [
-        "Authorization"
-    ]
+    exposedHeaders: "Authorization"
 };
