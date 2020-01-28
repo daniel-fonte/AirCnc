@@ -1,0 +1,72 @@
+header.nav-basic {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: nowrap;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+header h1 {
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+header .search-box {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+header .search-box input{
+    width: 80%;    
+    padding: 10px;
+    border-radius: 4px;
+    height: 30px;
+    border: 1px solid #444;
+}
+
+header .search-box button {
+    border: 1px solid #444;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    flex-grow: 1;
+    margin-left: -3px;
+    cursor: pointer;
+    background-color: #f05a5b;
+    color: #fff;
+    font-weight: bold;
+}
+
+header .SessionUser {
+    margin-top: 10px;
+    padding: 5px;
+    width: 60%;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header .SessionUser button {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #444;
+    border-radius: 2px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f05a5b;
+}
+
+.ul-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+ul.spot-list {
+    margin-top: 5px;
+}
+
+ul.spot-list li .emai-user {
+    font-size: 10px;
+}
