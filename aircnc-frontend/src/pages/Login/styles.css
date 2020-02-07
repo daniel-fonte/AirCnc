@@ -1,0 +1,9 @@
+a {
+    text-align: right;
+    margin-bottom: 8px;
+    color: #15008d;
+    cursor: pointer;   
+}
+a:hover {
+    color: blue;
+}
