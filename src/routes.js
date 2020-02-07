@@ -3,8 +3,10 @@ import express from "express";
 import multer from "multer";
 
 import storage from "@Config/upload";
+import ApprovalController from "@Controller/ApprovalsController";
 import BookingController from "@Controller/BookingController";
 import DashboardController from "@Controller/DashboardController";
+import RejectionController from "@Controller/RejectionsController";
 import SessionUser from "@Controller/SessionController";
 import SpotController from "@Controller/SpotController";
 import TokenVerify from "@Middleware/token";
@@ -16,6 +18,12 @@ const routes = express.Router();
 //Booking
 routes.post("/Booking/:idSpot", TokenVerify);
 routes.post("/Booking/:idSpot", BookingController.store);
+
+routes.post("/Booking/:booking_id/approval", TokenVerify);
+routes.post("/Booking/:booking_id/approval", ApprovalController.store);
+
+routes.post("/Booking/:booking_id/rejection", TokenVerify);
+routes.post("/Booking/:booking_id/rejection", RejectionController.store);
 
 //Public
 routes.get("/Spots", SpotController.index);
