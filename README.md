@@ -1,4 +1,2 @@
-![](/aircnc-frontend/src/assets/logo.svg)
-# AirCnc
+<img src="./logo.png"/>
 
-# Features
