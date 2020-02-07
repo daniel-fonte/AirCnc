@@ -10,22 +10,18 @@ export default function Register({ history }) {
     try {
       event.preventDefault();
 
-      if (Password.trim().length < 6) {
-        setPassword("");
-        alert("Senha muito curta");
-        return false;
-      }
       const response = await api.post("/Register", {
         Email,
         Password,
       });
 
-      localStorage.setItem("Authorization", response.headers.authorization);
-      localStorage.setItem("Email", response.data.User.Email);
+      sessionStorage.setItem("Authorization", response.headers.authorization);
+      sessionStorage.setItem("Email", response.data.user.Email);
+      sessionStorage.setItem("User", true);
 
-      return history.push("/Dashboard");
+      return history.push("/");
     } catch (error) {
-      return false;
+      return error;
     }
   }
   return (
@@ -41,7 +37,7 @@ para programadores e encontre
         {" "}
 para sua empresa.
       </p>
-      <form return onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           id="email"

@@ -14,14 +14,13 @@ export default function Login({ history }) {
       Password,
       Email,
     });
-    localStorage.setItem("Authorization", response.headers.authorization);
-    localStorage.setItem("Email", response.data.user.Email);
+    sessionStorage.setItem("Authorization", response.headers.authorization);
+    sessionStorage.setItem("Email", response.data.user.Email);
+    sessionStorage.setItem("User", true);
 
-    history.push("/Dashboard");
+    history.push("/");
   }
-  function handleRegister() {
-    history.push("/Register");
-  }
+
   return (
     <>
       <p>
@@ -54,7 +53,7 @@ para sua empresa.
           placeholder="Sua senha"
           required
         />
-        <a onClick={handleRegister}>Não possui uma conta!</a>
+        <a onClick={() => history.push("/Register")}>Não possui uma conta!</a>
         <button type="submit" className="btn">Login</button>
       </form>
     </>

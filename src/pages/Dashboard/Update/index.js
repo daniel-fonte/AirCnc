@@ -9,9 +9,9 @@ export default function UpdateSpot({ history }) {
 
   useEffect(() => {
     async function loadSpot() {
-      const response = await api.get(`/Spot/Dashboard/${localStorage.getItem("spot")}`, {
+      const response = await api.get(`/Spot/Dashboard/${sessionStorage.getItem("spot")}`, {
         headers: {
-          Authorization: localStorage.getItem("Authorization"),
+          Authorization: sessionStorage.getItem("Authorization"),
         },
       });
 
@@ -26,13 +26,13 @@ export default function UpdateSpot({ history }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    api.put(`/Spot/Dashboard/${localStorage.getItem("spot")}`, {
+    api.put(`/Spot/Dashboard/${sessionStorage.getItem("spot")}`, {
       company,
       price,
       techs,
     }, {
       headers: {
-        Authorization: localStorage.getItem("Authorization"),
+        Authorization: sessionStorage.getItem("Authorization"),
       },
     });
 

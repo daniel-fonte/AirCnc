@@ -46,6 +46,7 @@ header .SessionUser {
     align-self: flex-end;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 header .SessionUser button {
@@ -56,6 +57,7 @@ header .SessionUser button {
     font-weight: bold;
     color: #fff;
     background-color: #f05a5b;
+    cursor: pointer;
 }
 
 .ul-title {
@@ -69,4 +71,55 @@ ul.spot-list {
 
 ul.spot-list li .emai-user {
     font-size: 10px;
+}
+
+.booking {
+    border-radius: 4px;
+    border: 1px solid #444;
+    margin-top: 4px;
+    background-color: #f05a5b;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+}
+
+ul.notifications-response {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 16px;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+}
+
+ul.notifications-response li {
+    padding: 5px;
+    border-radius: 2px;
+    color: #fff;
+    margin-top: 5px;
+    width: 90%;
+}
+
+ul.notifications-response button {
+    padding: 10px;
+    border: 0;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+ul.notifications-response .approval {
+    background-color: #84C870;
+}
+
+ul.notifications-response .reject {
+    background-color: #f05a5b;
 }

@@ -10,7 +10,7 @@ export default function Settings({ history }) {
   async function deleteUser() {
     await api.delete("/User/Settings", {
       headers: {
-        Authorization: localStorage.getItem("Authorization"),
+        Authorization: sessionStorage.getItem("Authorization"),
       },
     });
 
@@ -26,11 +26,11 @@ export default function Settings({ history }) {
       newPassword,
     }, {
       headers: {
-        Authorization: localStorage.getItem("Authorization"),
+        Authorization: sessionStorage.getItem("Authorization"),
       },
     });
 
-    localStorage.setItem("Email", response.data.UserUpdated.Email);
+    sessionStorage.setItem("Email", response.data.UserUpdated.Email);
 
     history.push("/Dashboard");
   }

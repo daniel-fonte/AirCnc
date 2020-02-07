@@ -25,7 +25,7 @@ export default function NewSpot({ history }) {
 
     await api.post("/Spot/Dashboard", data, {
       headers: {
-        Authorization: localStorage.getItem("Authorization"),
+        Authorization: sessionStorage.getItem("Authorization"),
       },
     });
 
