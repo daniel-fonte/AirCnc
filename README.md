@@ -54,5 +54,5 @@ your secret key to jwt, `SERVER_HTTP`= your url port
 1. Move yourl to the frontend folder: `cd aircnc-frontend`
 2. Run `yarn start` to start the application web
 
-##License
+## License
 This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details
