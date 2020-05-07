@@ -21,16 +21,16 @@
 <ul> 
   <li> 
     <strong><img src="https://img.icons8.com/windows/20/000000/node-js.png" /> Node Js — </strong>
-JavaScript environment for server-side execution
+JavaScript environment to server-side execution
   </li> 
   <li> 
-    <strong><img src="https://img.icons8.com/color/20/000000/react-native.png" /> React Js — </strong>A JavaScript library for building user interfaces 
+    <strong><img src="https://img.icons8.com/color/20/000000/react-native.png" /> React Js — </strong>A JavaScript library to building user interfaces 
   </li> 
   <li> 
     <strong><img src="https://img.icons8.com/color/20/000000/mongodb.png" /> MongoDB — </strong>Non-relational database
   </li>
   <li> 
-    <strong><img src="https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/3585995681551952104-20.png" /> Socket IO — </strong>Library JavaScript for application web real time
+    <strong><img src="https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/3585995681551952104-20.png" /> Socket IO — </strong>Library JavaScript to application web real time
   </li> 
   <li> 
     <strong><img src="https://img.icons8.com/color/20/000000/javascript.png" /> JavaScript — </strong>
@@ -51,7 +51,7 @@ your secret key to jwt, `SERVER_HTTP`= your url port
 4. Run `yarn dev` to start the server
 
 ### Getting stared with frontend app
-1. Move yourl to the frontend folder: `cd aircnc-frontend`
+1. Move your to the frontend folder: `cd aircnc-frontend`
 2. Run `yarn start` to start the application web
 
 ## License
